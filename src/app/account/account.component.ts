@@ -21,7 +21,45 @@ export class AccountComponent implements OnInit {
   })
   contextFirstName = {
     controlName: 'firstName',
-    labelName: 'First Name'
+    labelName: 'First Name',
+    maxLength: 30,
+    isFullWidth: false
+  };
+  contextLastName = {
+    controlName: 'lastName',
+    labelName: 'Last Name',
+    maxLength: 30,
+    isFullWidth: false
+  };
+  contextEmail = {
+    controlName: 'email',
+    labelName: 'Email',
+    maxLength: 50,
+    isFullWidth: true
+  };
+  contextPhone = {
+    controlName: 'phone',
+    labelName: 'Phone',
+    maxLength: 10,
+    isFullWidth: false
+  };
+  contextAddress = {
+    controlName: 'address',
+    labelName: 'Address',
+    maxLength: 100,
+    isFullWidth: false
+  };
+  contextPassword = {
+    controlName: 'password',
+    labelName: 'Password',
+    maxLength: 30,
+    isFullWidth: false
+  };
+  contextConfirm = {
+    controlName: 'confirm',
+    labelName: 'Confirm',
+    maxLength: 30,
+    isFullWidth: false
   };
 
   ngOnInit(): void {
