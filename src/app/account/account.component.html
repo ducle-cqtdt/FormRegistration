@@ -1,0 +1,51 @@
+<div [formGroup]="formAcc"
+     class="container"
+>
+  <div class="frame">
+    <div class="frame__left">
+      <div class="frame__title">Google</div>
+      <div class="frame__subtitle">Create your Google Account</div>
+      <form action="">
+        <ng-container [ngTemplateOutlet]="tmplInput"
+                      [ngTemplateOutletContext]="contextFirstName"
+        ></ng-container>
+        <ng-container [ngTemplateOutlet]="tmplInput"
+                      [ngTemplateOutletContext]="{controlName: 'lastName'}"
+        ></ng-container>
+        <ng-container [ngTemplateOutlet]="tmplInput"
+                      [ngTemplateOutletContext]="{controlName: 'email'}"
+        ></ng-container>
+        <ng-container [ngTemplateOutlet]="tmplInput"
+                      [ngTemplateOutletContext]="{controlName: 'phone'}"
+        ></ng-container>
+        <ng-container [ngTemplateOutlet]="tmplInput"
+                      [ngTemplateOutletContext]="{controlName: 'address'}"
+        ></ng-container>
+        <ng-container [ngTemplateOutlet]="tmplInput"
+                      [ngTemplateOutletContext]="{controlName: 'password'}"
+        ></ng-container>
+        <ng-container [ngTemplateOutlet]="tmplInput"
+                      [ngTemplateOutletContext]="{controlName: 'confirm'}"
+        ></ng-container>
+      </form>
+    </div>
+    <div class="frame__right">
+      <img class="frame__img" src="https://ssl.gstatic.com/accounts/signup/glif/account.svg" alt="">
+    </div>
+  </div>
+
+  <ng-template #tmplInput
+               let-controlName="controlName"
+               let-labelName="labelName"
+  >
+    <div class="form-group">
+      <input [formControlName]="controlName"
+             [id]="controlName"
+             type="text"
+             class="form-control"
+      >
+      <label [for]="controlName">{{labelName}}</label>
+      <span class="alert"></span>
+    </div>
+  </ng-template>
+</div>
