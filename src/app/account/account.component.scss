@@ -9,7 +9,7 @@
   --clr--dark: 202124;
   --clr--gray: #5f6368;
   --clr--light-gray: #cecece;
-  --clr--danger: #ff8080;
+  --clr--danger: #e81407;
 }
 
 .frame {
@@ -41,6 +41,7 @@
   &__img {
     width: 60%;
     margin: 0 auto;
+
     span {
       display: inline-block;
       text-align: center;
@@ -83,28 +84,28 @@
   }
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  justify-items: center;
-  gap: 10px;
-
-  &__full {
-    grid-column-start: 1;
-    grid-column-end: 3;
-    width: 100%;
-  }
-}
+//.grid {
+//  display: grid;
+//  grid-template-columns: 1fr 1fr;
+//  justify-items: center;
+//  gap: 10px;
+//
+//  &__full {
+//    grid-column-start: 1;
+//    grid-column-end: 3;
+//    width: 100%;
+//  }
+//}
 
 .form-group {
   --transition--duration: 0.2s;
   border: 1px solid var(--clr--light-gray);
   position: relative;
   border-radius: 4px;
-  margin: 10px 0;
+  margin: 20px 0 5px 0;
   box-sizing: border-box;
   background: #fff;
-  font-size: 1rem;
+  font-size: .85rem;
   transition: var(--transition--duration);
 
   .form-control {
@@ -119,35 +120,39 @@
 
   label {
     position: absolute;
-    left: 10px;
+    left: 8px;
     top: 50%;
     transform: translateY(-50%);
     background: transparent;
     transition: var(--transition--duration);
     font-weight: lighter;
     color: var(--clr--gray);
+    font-size: 0.85em;
   }
 
   .form-control:focus + label,
-  .form-control:valid + label{
+  .form-control:valid + label {
     top: 0;
-    font-size: .75em;
+    font-size: .7em;
     background: inherit;
     box-shadow: 0 0 0 2px #fff;
   }
-  .form-control:focus + label{
+
+  .form-control:focus + label {
     color: var(--clr--blue);
   }
 
-  &:has(.form-control:focus){
+  &:has(.form-control:focus) {
     border-color: var(--clr--blue);
     box-shadow: 0 0 0 1px var(--clr--blue);
   }
-  &.danger{
+
+  &.danger {
     border-color: transparent !important;
-    box-shadow: 0 0 4px 2px var(--clr--danger) !important;
+    box-shadow: 0 0 3px 1px var(--clr--danger) !important;
   }
-  &.danger label{
+
+  &.danger label {
     color: var(--clr--danger) !important;
   }
 }
@@ -163,6 +168,7 @@
 
 .d-flex {
   display: flex;
+  gap: 15px;
 }
 
 .justify-content-between {
@@ -171,5 +177,14 @@
 
 .align-items-center {
   align-items: center;
+}
+
+.alert{
+//  position: absolute;
+//  left: 0;
+//  top: 100%;
+//;
+  color: var(--clr--danger);
+  font-size: 0.7em;
 }
 
