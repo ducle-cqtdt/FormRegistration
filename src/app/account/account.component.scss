@@ -131,7 +131,7 @@
   }
 
   .form-control:focus + label,
-  .form-control:valid + label {
+  .form-control:not(:placeholder-shown) + label {
     top: 0;
     font-size: .7em;
     background: inherit;
@@ -148,12 +148,23 @@
   }
 
   &.danger {
-    border-color: transparent !important;
-    box-shadow: 0 0 3px 1px var(--clr--danger) !important;
+    border-color: var(--clr--danger) !important;
   }
 
-  &.danger label {
+  &.danger:has(.form-control:focus) {
+    box-shadow: 0 0 2px 1px var(--clr--danger) !important;
+  }
+
+  &.danger:has(.form-control:focus) label,
+  &.danger:has(.form-control:not(:placeholder-shown)) label {
     color: var(--clr--danger) !important;
+  }
+}
+
+.form-group:has(.form-control[type='radio']) {
+  .form-control {
+    width: auto !important;
+    border: 1px solid red;
   }
 }
 
@@ -162,7 +173,7 @@
 }
 
 #passwordToggle {
-  margin-right: 20px;
+  margin: 15px 20px 40px 0;
   border: 1px solid red;
 }
 
@@ -179,12 +190,13 @@
   align-items: center;
 }
 
-.alert{
-//  position: absolute;
-//  left: 0;
-//  top: 100%;
-//;
+.alert {
+  //  position: absolute;
+  //  left: 0;
+  //  top: 100%;
+  //;
   color: var(--clr--danger);
   font-size: 0.7em;
 }
+
 

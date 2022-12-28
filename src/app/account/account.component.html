@@ -33,7 +33,8 @@
       </div>
       <div class="frame__subtitle">Create your Google Account</div>
       <form class="form"
-            action=""
+            action="#"
+            (ngSubmit)="onSubmit()"
             novalidate
       >
         <div class="d-flex">
@@ -41,46 +42,50 @@
           <ng-container *ngTemplateOutlet="tmplInput;context: contextLastName"></ng-container>
         </div>
         <span
-          *ngIf="(formAcc.controls['firstName'].errors && formAcc.controls['firstName'].touched)
-                    || (formAcc.controls['lastName'].errors && formAcc.controls['lastName'].touched)"
+          *ngIf="formAcc.get('firstName').errors || formAcc.get('lastName').errors"
           class="alert"
         >
           <i
-            class="fa fa-exclamation-circle"></i>&ensp;Enter
-          {{formAcc.controls['firstName'].errors && formAcc.controls['firstName'].touched ? 'first name ' : ''}}
-          {{formAcc.controls['firstName'].errors && formAcc.controls['lastName'].errors
-        && formAcc.controls['firstName'].touched && formAcc.controls['lastName'].touched ? 'and ' : '' }}
-          {{formAcc.controls['lastName'].errors && formAcc.controls['lastName'].touched ? 'surname' : ''}}
+            class="fa fa-exclamation-circle"></i>&ensp;
+          {{
+          formAcc.controls['firstName'].errors
+            ? formAcc.controls['firstName'].errors['message']
+            : formAcc.controls['lastName'].errors['message']
+          }}
         </span>
         <ng-container *ngTemplateOutlet="tmplInput;context: contextEmail"></ng-container>
-        <span *ngIf="formAcc.controls['email'].errors && formAcc.controls['email'].touched"
+        <span *ngIf="formAcc.controls['email'].errors"
               class="alert"
         >
-          <i class="fa fa-exclamation-circle"></i>&ensp;Choose a Gmail address
+          <i class="fa fa-exclamation-circle"></i>&ensp;{{formAcc.get("email").errors["message"]}}
         </span>
         <div class="d-flex">
-          <ng-container *ngTemplateOutlet="tmplInput;context: contextPhone"></ng-container>
-          <ng-container *ngTemplateOutlet="tmplInput;context: contextAddress"></ng-container>
+          <ng-container *ngTemplateOutlet="tmplInput;context: contextBirthDate"></ng-container>
+          <ng-container *ngTemplateOutlet="tmplInput;context: contextGenderMale"></ng-container>
+          <ng-container *ngTemplateOutlet="tmplInput;context: contextGenderFemale"></ng-container>
         </div>
-        <span *ngIf="formAcc.controls['phone'].errors && formAcc.controls['phone'].touched"
+        <ng-container *ngTemplateOutlet="tmplInput;context: contextPhone"></ng-container>
+        <span *ngIf="formAcc.controls['phone'].errors"
               class="alert"
         >
-          <i class="fa fa-exclamation-circle"></i>&ensp;Enter phone number
+          <i class="fa fa-exclamation-circle"></i>&ensp;{{formAcc.controls['phone'].errors['message']}}
+        </span>
+        <ng-container *ngTemplateOutlet="tmplInput;context: contextAddress"></ng-container>
+        <span *ngIf="formAcc.controls['address'].errors"
+              class="alert"
+        >
+          <i class="fa fa-exclamation-circle"></i>&ensp;{{formAcc.controls['address'].errors['message']}}
         </span>
         <div class="d-flex">
           <ng-container *ngTemplateOutlet="tmplInput;context: contextPassword"></ng-container>
           <ng-container *ngTemplateOutlet="tmplInput;context: contextConfirm"></ng-container>
         </div>
         <span
-          *ngIf="(formAcc.controls['password'].errors && formAcc.controls['password'].touched)
-                    || (formAcc.controls['password'].value !== '' && formAcc.controls['confirm'].touched)"
+          *ngIf="(formAcc.get('password').errors)"
           class="alert"
         >
-          <i class="fa fa-exclamation-circle"></i>&ensp;Enter
-          {{formAcc.controls['password'].errors && formAcc.controls['password'].touched ? 'password ' : ''}}
-          {{formAcc.controls['password'].value !== '' && formAcc.controls['confirm']?.errors && formAcc.controls['confirm'].touched ? 'confirm password' : ''}}
+          <i class="fa fa-exclamation-circle"></i>&ensp;{{formAcc.get('password').errors['message']}}
         </span>
-
         <div class="d-flex">
           <label for="passwordToggle"
                  class="grid__full text-dark"
@@ -89,7 +94,6 @@
                    type="checkbox"
                    [checked]="showPassword"
                    (change)="togglePassword()"
-                   class=""
             >
             Show password
           </label>
@@ -123,14 +127,14 @@
                let-isRequired=isRequired
   >
     <div class="form-group"
-         [class.danger]="formAcc.controls[controlName]?.errors && formAcc.controls[controlName].touched">
+         [class.danger]="formAcc.controls[controlName]?.errors">
       <input [formControlName]="controlName"
              [id]="controlName"
              [name]="controlName"
              [type]="inputType"
              [maxLength]="maxLength"
              class="form-control"
-             [required]="isRequired"
+             placeholder=" "
       >
       <label [for]="controlName">{{labelName}}</label>
     </div>
